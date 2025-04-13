@@ -10,7 +10,11 @@ protocol ViewControllerProtocol{
     func setupView()
     func makeLabel(withtext text:String)->UILabel
     func makeButton(withtext text:String)->UIButton
+    func makeView()->UIView
 }
+
+
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -21,20 +25,23 @@ class ViewController: UIViewController {
 
 }
 
+
+
+
+
 extension ViewController :ViewControllerProtocol{
-    
-    
-    
+
     func setupView() {
         let upperLeftLabel = makeLabel(withtext: "upperLeft")
         let upperRightLabel = makeLabel(withtext: "upperRiht")
         let upperBottomLabel = makeLabel(withtext: "upperBottom")
         let upperBottomButon = makeButton(withtext: "upperButon")
+        let yellovView = makeView()
         view.addSubview(upperLeftLabel)
         view.addSubview(upperRightLabel)
         view.addSubview(upperBottomLabel)
         view.addSubview(upperBottomButon)
-        
+        view.addSubview(yellovView)
         
         
         // MARK: - Sol üst köşeye
@@ -72,7 +79,28 @@ extension ViewController :ViewControllerProtocol{
             // trailingAnchor: bitiş (sağ) kenarını
             upperBottomButon.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8)
         ])
-        
+        // MARK: - Tam Ekran Ortasi
+        NSLayoutConstraint.activate([
+           
+            yellovView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            yellovView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+//            option : 1
+//            yellovView.heightAnchor.constraint(equalToConstant: 50),
+//            yellovView.widthAnchor.constraint(equalToConstant: 100)
+            
+            //option : 2
+            
+            //width
+            yellovView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
+            yellovView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            //heigth
+            yellovView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 100),
+            yellovView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -100)
+            
+            
+            
+        ])
         
     }
     func makeLabel(withtext text: String) -> UILabel {
@@ -92,7 +120,13 @@ extension ViewController :ViewControllerProtocol{
         
         return button
     }
-    
+    func makeView() -> UIView {
+        let view = UIView().useAutoLayout()
+        
+        view.backgroundColor = .yellow
+        
+        return view
+    }
 }
 #Preview{
     ViewController()
