@@ -24,13 +24,34 @@ extension ViewController :ViewControllerProtocol{
     
     func setupView() {
         let upperLeftLabel = makeLabel(withtext: "upperLeft")
+        let upperRightLabel = makeLabel(withtext: "upperRiht")
+        
         view.addSubview(upperLeftLabel)
+        view.addSubview(upperRightLabel)
         
         
+        
+        
+        // MARK: - Sol üst köşeye
         NSLayoutConstraint.activate([
-            upperLeftLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 2),
-            upperLeftLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 2)
+            
+            //topAnchor: üst kenarını
+            upperLeftLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            // leadingAnchor: başlangıç (sol) kenarını
+            upperLeftLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8)
+          
         ])
+        // MARK: - Sağ üst köşeye
+        NSLayoutConstraint.activate([
+            
+            upperRightLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            // trailingAnchor: bitiş (sağ) kenarını
+            upperRightLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8)
+        ])
+        
+        
+        
+        
     }
     func makeLabel(withtext text: String) -> UILabel {
         let label = UILabel()
