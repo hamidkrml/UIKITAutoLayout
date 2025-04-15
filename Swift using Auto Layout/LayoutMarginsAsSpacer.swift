@@ -76,7 +76,14 @@ extension LayoutMarginsAsSpacer:LayoutMarginsAsSpacerProtocol{
             middleGuide.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             trailingGuide.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             okButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            cancelButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            cancelButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            
+            
+            leadingGuide.heightAnchor.constraint(equalToConstant: 1),
+            middleGuide.heightAnchor.constraint(equalToConstant: 1),
+            trailingGuide.heightAnchor.constraint(equalToConstant: 1)
+            
         ])
         
         
