@@ -31,13 +31,25 @@ extension intrinsicContentSizeInaction:intrinsicContentSizeInactionProtocol{
         let textfield = makeTextFieald(withtext: "textField")
         view.addSubview(label)
         view.addSubview(textfield)
+        
+        
+        
+        // label'ın kendi içeriğine göre genişliğini koruması için öncelik verildi
+        label.setContentHuggingPriority(UILayoutPriority(rawValue:251), for: .horizontal)
+        
         NSLayoutConstraint.activate([
+            // label'ı üstte güvenli alanın 8 birim altına yerleştir
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 8),
+            // label'ı sol kenardan 8 birim içeri yerleştir
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8),
        
-            textfield.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
+            // textfield'ı label'ın sağından 8 birim uzağa yerleştir
+            textfield.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
+            // textfield ve label aynı yatay hizaya (baseline) sahip olsun
             textfield.firstBaselineAnchor.constraint(equalTo: label.firstBaselineAnchor),
-            textfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
+            // textfield'ı sağ kenardan 8 birim içeride konumlandır
+            textfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            
         ])
         
     }
@@ -54,7 +66,7 @@ extension intrinsicContentSizeInaction:intrinsicContentSizeInactionProtocol{
         let textfield = UITextField().useAutoLayout()
         textfield.placeholder = text
         textfield.font = UIFont.systemFont(ofSize: 35)
-        textfield.backgroundColor = .black
+        textfield.backgroundColor = .gray
      
         return textfield
     }
@@ -70,4 +82,3 @@ class biglabel: UILabel{
         return CGSize(width: 200, height: 200)
     }
 }
-
