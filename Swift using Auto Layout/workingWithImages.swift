@@ -38,18 +38,29 @@ extension workingWithImages:workingWithImagesProtocol{
         view.addSubview(button)
         
         
+        // MARK: - Auto Layout Constraints
+       
+        // 1. Görsel (image): Üstten 16pt boşlukla, ekran genişliğine duyarlı ve yüksekliği 300pt.
+        // 2. Başlık (label): Görselin altına 10pt boşlukla gelir, sağ ve soldan 8pt boşlukla hizalanır.
+        // 3. Buton (button): Ekranın en altına sabitlenir, yatayda kenarlardan 8pt boşlukla yayılır.
         NSLayoutConstraint.activate([
-            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-
             image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            label.topAnchor.constraint(equalTo: image.bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10),
-            image.widthAnchor.constraint(equalToConstant: 400),
+ 
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             image.heightAnchor.constraint(equalToConstant: 300),
+
+            label.topAnchor.constraint(equalTo: image.bottomAnchor,constant: 10),
+            
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8),
+          
+            
+            
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8)
+          
         ])
             
         
